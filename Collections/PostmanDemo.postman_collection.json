@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "a91b4e6d-0d74-4cfd-beee-d6ec4416cf10",
+		"name": "Postman Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23130610"
+	},
+	"item": [
+		{
+			"name": "Create Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//OBTENER EL ID\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// SETTEAR UNA VARIABLE DE ENTORNO CON ID OBTENIDO\r",
+							"pm.environment.set(\"PROJECT_ID\", jsonData.Id);\r",
+							"\r",
+							"//Verificar codigo de respuesta 200 OK\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//\r",
+							"pm.test(\"Verify project name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Content).to.eql(\"Postman\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{PASSWORD}}",
+						"username": "{{USER}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Content\":\"Postman\",\r\n    \"Icon\":4\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{HOST}}/api/projects.json"
+			},
+			"response": [
+				{
+					"name": "Create Project",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Content\":\"Postman\",\r\n    \"Icon\":4\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://todo.ly//api/projects.json"
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"Id\": 1,\n    \"Content\": \"Postman\",\n    \"ItemsCount\": 0,\n    \"Icon\": 4,\n    \"ItemType\": 2,\n    \"ParentId\": null,\n    \"Collapsed\": false,\n    \"ItemOrder\": 77,\n    \"Children\": [],\n    \"IsProjectShared\": false,\n    \"ProjectShareOwnerName\": null,\n    \"ProjectShareOwnerEmail\": null,\n    \"IsShareApproved\": false,\n    \"IsOwnProject\": true,\n    \"LastSyncedDateTime\": \"/Date(1671129303218)/\",\n    \"LastUpdatedDate\": \"/Date(1671129303203)/\",\n    \"Deleted\": false,\n    \"SyncClientCreationId\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Verificar codigo de respuesta 200 OK\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//\r",
+							"pm.test(\"Verify project name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Content).to.eql(\"Postman_UPDATE\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{PASSWORD}}",
+						"username": "{{USER}}"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Content\":\"Postman_UPDATE\",\r\n    \"Icon\":5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{HOST}}/api/projects/{{PROJECT_ID}}.json"
+			},
+			"response": [
+				{
+					"name": "Update Project",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Content\":\"Postman_UPDATE\",\r\n    \"Icon\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://todo.ly//api/projects/.json"
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"Id\": 1,\r\n    \"Content\": \"Postman_UPDATE\",\r\n    \"ItemsCount\": 0,\r\n    \"Icon\": 5,\r\n    \"ItemType\": 2,\r\n    \"ParentId\": null,\r\n    \"Collapsed\": false,\r\n    \"ItemOrder\": 77,\r\n    \"Children\": [],\r\n    \"IsProjectShared\": false,\r\n    \"ProjectShareOwnerName\": null,\r\n    \"ProjectShareOwnerEmail\": null,\r\n    \"IsShareApproved\": false,\r\n    \"IsOwnProject\": true,\r\n    \"LastSyncedDateTime\": \"/Date(1671129341514)/\",\r\n    \"LastUpdatedDate\": \"/Date(1671129341513)/\",\r\n    \"Deleted\": false,\r\n    \"SyncClientCreationId\": null\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Read Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Verificar codigo de respuesta 200 OK\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//\r",
+							"pm.test(\"Verify project name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Content).to.eql(\"Postman_UPDATE\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{PASSWORD}}",
+						"username": "{{USER}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Content\":\"Postman_UPDATE\",\r\n    \"Icon\":5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{HOST}}/api/projects/{{PROJECT_ID}}.json"
+			},
+			"response": [
+				{
+					"name": "Read Project",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Content\":\"Postman_UPDATE\",\r\n    \"Icon\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://todo.ly//api/projects/.json"
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"Id\": 4048528,\n    \"Content\": \"Postman_UPDATE\",\n    \"ItemsCount\": 0,\n    \"Icon\": 5,\n    \"ItemType\": 2,\n    \"ParentId\": null,\n    \"Collapsed\": false,\n    \"ItemOrder\": 77,\n    \"Children\": [],\n    \"IsProjectShared\": false,\n    \"ProjectShareOwnerName\": null,\n    \"ProjectShareOwnerEmail\": null,\n    \"IsShareApproved\": false,\n    \"IsOwnProject\": true,\n    \"LastSyncedDateTime\": \"/Date(1671129370093)/\",\n    \"LastUpdatedDate\": \"/Date(1671129341513)/\",\n    \"Deleted\": false,\n    \"SyncClientCreationId\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Verificar codigo de respuesta 200 OK\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//\r",
+							"pm.test(\"Verify project name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Content).to.eql(\"Postman_UPDATE\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{PASSWORD}}",
+						"username": "{{USER}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "{{HOST}}/api/projects/{{PROJECT_ID}}.json"
+			},
+			"response": [
+				{
+					"name": "Delete Project",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{HOST}}/api/projects/{{PROJECT_ID}}.json"
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"Id\": 4048528,\n    \"Content\": \"Postman_UPDATE\",\n    \"ItemsCount\": 0,\n    \"Icon\": 5,\n    \"ItemType\": 2,\n    \"ParentId\": null,\n    \"Collapsed\": false,\n    \"ItemOrder\": 77,\n    \"Children\": [],\n    \"IsProjectShared\": false,\n    \"ProjectShareOwnerName\": null,\n    \"ProjectShareOwnerEmail\": null,\n    \"IsShareApproved\": false,\n    \"IsOwnProject\": true,\n    \"LastSyncedDateTime\": \"/Date(1671129370093)/\",\n    \"LastUpdatedDate\": \"/Date(1671129341513)/\",\n    \"Deleted\": false,\n    \"SyncClientCreationId\": null\n}"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "postman2",
+  "version": "1.0.0",
+  "description": "Repo para ejecutar Newman con Postman",
+  "main": "index.js",
+  "scripts": {
+    "newmanFede:json": "newman run Collections/PostmanDemo.postman_collection.json",
+    "newmanFede:link": "newman run https://api.postman.com/collections/24949355-5fccb005-81b1-4df4-af73-4a56da0c2391?access_key=PMAT-01GMP0DDAK23C0GN53S2S0AD51",
+    "newmanFede:reporter": "newman run Collections/PostmanDemo.postman_collection.json -r htmlextra"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "repositorio git"
+  },
+  "author": "Fede Roman",
+  "license": "ISC",
+  "dependencies": {
+    "newman": "^5.3.2",
+    "newman-reporter-htmlextra": "^1.22.11"
+  }
+}
