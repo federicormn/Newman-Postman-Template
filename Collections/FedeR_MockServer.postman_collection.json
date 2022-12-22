@@ -1,0 +1,320 @@
+{
+	"info": {
+		"_postman_id": "9165dd19-dcdc-4ce5-b223-f7def10f61c0",
+		"name": "FedeR_MockServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24949355"
+	},
+	"item": [
+		{
+			"name": "Create animal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					},
+					{
+						"key": "x-mock-response-code",
+						"value": "200",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\":\"NombreAnimal\",\r\n\t\"isVegan\": false,\r\n\t\"isInSea\": false,\r\n\t\"color\":\"ColorAnimal\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url_mock_animals}}/animal/create",
+					"host": [
+						"{{base_url_mock_animals}}"
+					],
+					"path": [
+						"animal",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create animal - 201 Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\":\"NombreAnimal\",\r\n\t\"isVegan\": false,\r\n\t\"isInSea\": false,\r\n\t\"color\":\"ColorAnimal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_mock_animals}}/animal/create",
+							"host": [
+								"{{base_url_mock_animals}}"
+							],
+							"path": [
+								"animal",
+								"create"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n\t\"idAnimal\":1234\r\n}"
+				},
+				{
+					"name": "Create animal - 400 Bad Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\":\"NombreAnimal\",\r\n\t\"isVegan\": false,\r\n\t\"isInSea\": false,\r\n\t\"color\":\"ColorAnimal\",\r\n    \"test\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_mock_animals}}/animal/create",
+							"host": [
+								"{{base_url_mock_animals}}"
+							],
+							"path": [
+								"animal",
+								"create"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "Invalid input"
+				}
+			]
+		},
+		{
+			"name": "Get animal",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url_mock_animals}}/animal/?id=123",
+					"host": [
+						"{{base_url_mock_animals}}"
+					],
+					"path": [
+						"animal",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "123"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get animal - 200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_mock_animals}}/animal/?id=123",
+							"host": [
+								"{{base_url_mock_animals}}"
+							],
+							"path": [
+								"animal",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "\t\t\t\t{\r\n\t\t\t\t\"name\":\"NombreAnimal\",\r\n\t\t\t\t\"isVegan\": false,\r\n\t\t\t\t\"isInSea\": false,\r\n\t\t\t\t\"color\":\"ColorAnimal\",\r\n\t\t\t\t\"idAnimal\":1234\r\n\t\t\t\t}"
+				},
+				{
+					"name": "Get animal - 404 Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_mock_animals}}/animal/?id=123",
+							"host": [
+								"{{base_url_mock_animals}}"
+							],
+							"path": [
+								"animal",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "Pet not found"
+				}
+			]
+		},
+		{
+			"name": "Update animal",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\":\"new_NombreAnimal\",\r\n\t\"isVegan\": true,\r\n\t\"isInSea\": false,\r\n\t\"color\":\"ColorAnimal\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url_mock_animals}}/animal/?id=1234",
+					"host": [
+						"{{base_url_mock_animals}}"
+					],
+					"path": [
+						"animal",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update - 200 OK",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\":\"new_NombreAnimal\",\r\n\t\"isVegan\": true,\r\n\t\"isInSea\": false,\r\n\t\"color\":\"ColorAnimal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_mock_animals}}/animal/?id=1234",
+							"host": [
+								"{{base_url_mock_animals}}"
+							],
+							"path": [
+								"animal",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1234"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\":\"1234\",\r\n\t\"name\":\"new_NombreAnimal\",\r\n\t\"isVegan\": true,\r\n\t\"isInSea\": false,\r\n\t\"color\":\"ColorAnimal\"\r\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url_mock_animals",
+			"value": "https://abfbfd1c-48c5-4adc-8456-c57e1845c970.mock.pstmn.io",
+			"type": "string"
+		},
+		{
+			"key": "x-api-key",
+			"value": "PMAK-63a49b504f2b7c19ca10f255-50a890ad3c0b003aa13c6837ae5f2d75d0",
+			"type": "string"
+		}
+	]
+}

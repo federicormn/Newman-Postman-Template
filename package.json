@@ -6,7 +6,9 @@
   "scripts": {
     "newmanFede:json": "newman run Collections/PostmanDemo.postman_collection.json",
     "newmanFede:link": "newman run https://api.postman.com/collections/24949355-5fccb005-81b1-4df4-af73-4a56da0c2391?access_key=PMAT-01GMP0DDAK23C0GN53S2S0AD51",
-    "newmanFede:reporter": "newman run Collections/PostmanDemo.postman_collection.json -r htmlextra"
+    "newmanFede:reporter": "newman run Collections/PostmanDemo.postman_collection.json -r htmlextra",
+    "newmanFede:enviroment": "newman run Collections/FedeR_CollectionConEnviroment.postman_collection.json -e EnviromentVars/FedeR.postman_environment.json",
+    "newmanFede:mock":"newman run Collections/FedeR_MockServer.postman_collection.json"
     
   },
   "repository": {
